@@ -11,13 +11,12 @@ def find_duplicates(in_rucksack: list) -> list:
     """find duplicate letters in two halves of string"""
     duplicates = []
     for i in in_rucksack:
-        first = i[:len(i)//2]
-        second = i[len(i)//2:]
-        for f in first:
-            result = second.find(f)
-            if result > -1:
-                duplicates.append(f)
-                break
+        strings = [i[:len(i)//2], i[len(i)//2:]]
+        common = set.intersection(*map(set, strings))
+        if len(common) == 1:
+            duplicates.append(list(common)[0])
+        else:
+            print("Something went wrong, too many duplicate characters")
     return duplicates
 
 
