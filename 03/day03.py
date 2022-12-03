@@ -16,7 +16,7 @@ def find_duplicates(in_rucksack: list) -> list:
         if len(common) == 1:
             duplicates.append(list(common)[0])
         else:
-            print("Something went wrong, too many duplicate characters")
+            print("Something went wrong, too many or too few duplicate characters")
     return duplicates
 
 
@@ -29,20 +29,20 @@ def calculate(duplicates: list) -> int:
     return score
 
 
-def thirds(in_rucksack: list) -> list:
+def split_rucksack(in_rucksack: list, n: int) -> list:
     """split items in rucksack into every three"""
-    return list(zip(*[iter(in_rucksack)]*3))
+    return list(zip(*[iter(in_rucksack)]*n))
 
 
-def find_badge(in_rucksack_thirds: list) -> list:
+def find_badge(in_rucksack_split: list) -> list:
     """find the badge in sets of three items"""
     badges = []
-    for i in in_rucksack_thirds:
+    for i in in_rucksack_split:
         common = set.intersection(*map(set, i))
         if len(common) == 1:
             badges.append(list(common)[0])
         else:
-            print("Something went wrong, too many badges")
+            print("Something went wrong, too many or too few badges")
     return badges
 
 
@@ -50,7 +50,7 @@ def main():
     in_rucksack = read_file("puzzle_input.txt")
     duplicates = find_duplicates(in_rucksack)
     print("The score for part 1 is " + str(calculate(duplicates)))
-    in_rucksack_thirds = thirds(in_rucksack)
+    in_rucksack_thirds = split_rucksack(in_rucksack, 3)
     badges = find_badge(in_rucksack_thirds)
     print("The score for part 2 is " + str(calculate(badges)))
 
