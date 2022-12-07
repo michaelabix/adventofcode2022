@@ -3,10 +3,8 @@ def read_file(file_path: str) -> dict:
     file_object = open(file_path, "r", encoding="UTF=8").read().splitlines()
     directory_structure = {}
     path = ''
-    length = len(file_object)
-    i = 0
-    while i < length:
-        line = file_object[i].split()
+    for f in file_object:
+        line = f.split()
         if line[0] == '$':
             if line[1] == 'cd':
                 if line[2] == '..':
@@ -34,8 +32,6 @@ def read_file(file_path: str) -> dict:
                     directory_structure[path].append(tuple(line))
             else:
                 directory_structure[path].append(tuple(line))
-        i += 1
-    print(directory_structure)
     return directory_structure
 
 
