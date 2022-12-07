@@ -1,4 +1,4 @@
-def read_file(file_path: str) -> list:
+def read_file(file_path: str) -> dict:
     """this is really gross"""
     file_object = open(file_path, "r", encoding="UTF=8").read().splitlines()
     directory_structure = {}
@@ -35,7 +35,7 @@ def read_file(file_path: str) -> list:
             else:
                 directory_structure[path].append(tuple(line))
         i += 1
-    
+    print(directory_structure)
     return directory_structure
 
 
